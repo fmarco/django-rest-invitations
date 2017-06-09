@@ -9,7 +9,10 @@ from invitations.app_settings import app_settings as invitations_settings
 from invitations.adapters import get_invitations_adapter
 from invitations.signals import invite_accepted
 
-from .app_settings import InvitationModel, InvitationBulkWriteSerializer, InvitationReadSerializer, InvitationWriteSerializer
+from .app_settings import (
+    InvitationModel, InvitationBulkWriteSerializer, InvitationReadSerializer,
+    InvitationWriteSerializer, CREATE_AND_SEND_URL, SEND_URL, SEND_MULTIPLE_URL
+)
 
 
 class InvitationViewSet(
@@ -33,14 +36,14 @@ class InvitationViewSet(
         invitation.save()
         invitation.send_invitation(request)
 
-    @detail_route(methods=['post'], permission_classes=[IsAuthenticated])
+    @detail_route(methods=['post'], permission_classes=[IsAuthenticated], url_path=SEND_URL)
     def send(self, request, pk=None):
         invitation = self.get_object()
         self._prepare_and_send(invitation, request)
         content = {'detail': 'Invite sent'}
         return Response(content, status=status.HTTP_200_OK)
 
-    @list_route(methods=['post'], permission_classes=[IsAuthenticated])
+    @list_route(methods=['post'], permission_classes=[IsAuthenticated], url_path=CREATE_AND_SEND_URL)
     def create_and_send(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -50,7 +53,7 @@ class InvitationViewSet(
         content = {'detail': 'Invite sent'}
         return Response(content, status=status.HTTP_200_OK)
 
-    @list_route(methods=['post'], permission_classes=[IsAuthenticated])
+    @list_route(methods=['post'], permission_classes=[IsAuthenticated], url_path=SEND_MULTIPLE_URL)
     def send_multiple(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
