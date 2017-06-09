@@ -55,29 +55,29 @@ url(r'^', include('rest_invitations.urls'))
 
 *   `Invitations list`
 
-    /invitations/ (list, create)
+    - /invitations/ (list, create)
 
     body request (create): email (string)
 
 *   `Invitation detail`
 
-    /invitations/<pk>/ (retrieve)
+    - /invitations/<pk>/ (retrieve)
 
 *   `Invitation send`
 
-    /invitations/<pk>/send/ (post)
+    - /invitations/<pk>/send/ (post)
 
     body request: None
 
 *   `Invitation create and send`
 
-    invitations/create-and-send/ (post)
+    - invitations/create-and-send/ (post)
 
     body request: email (string)
 
 *   `Invitation multiple send`
 
-    invitations/send-multiple/ (post)
+    - invitations/send-multiple/ (post)
 
     body request: email: list of strings
 
