@@ -17,6 +17,7 @@ errors = {
     "email_in_use": _("An active user is using this e-mail address"),
 }
 
+
 class EmailListField(serializers.ListField):
     child = serializers.EmailField()
 
@@ -71,7 +72,9 @@ class InvitationBulkWriteSerializer(InvitationWriteSerializer):
 
     def validate_email(self, email_list):
         if len(email_list) == 0:
-            raise serializers.ValidationError(_('You must add one or more email addresses'))
+            raise serializers.ValidationError(
+                _('You must add one or more email addresses')
+            )
         for email in email_list:
             email = get_invitations_adapter().clean_email(email)
             try:
