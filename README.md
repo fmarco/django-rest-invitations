@@ -17,7 +17,7 @@ Make a proper setup for django-invitations.
 'rest_invitations'
 
 # Append to urls.py
-url(r'^rest-invitations/', include('rest_invitations.urls'))
+url(r'^', include('rest_invitations.urls'))
 ```
 
 ### Configuration
