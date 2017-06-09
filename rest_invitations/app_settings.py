@@ -1,9 +1,12 @@
 from django.conf import settings
 from invitations.utils import get_invitation_model
 
-from .serializers import InvitationReadSerializer as DefaultInvitationReadSerializer
-from .serializers import InvitationWriteSerializer as DefaultInvitationWriteSerializer
-from .serializers import InvitationBulkWriteSerializer as DefaultInvitationBulkWriteSerializer
+from .serializers import \
+    InvitationBulkWriteSerializer as DefaultInvitationBulkWriteSerializer
+from .serializers import \
+    InvitationReadSerializer as DefaultInvitationReadSerializer
+from .serializers import \
+    InvitationWriteSerializer as DefaultInvitationWriteSerializer
 from .utils import import_callable
 
 # Serializers

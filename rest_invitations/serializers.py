@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
-from rest_framework import serializers
 from invitations.adapters import get_invitations_adapter
-from invitations.exceptions import AlreadyInvited, AlreadyAccepted, UserRegisteredEmail
+from invitations.exceptions import (AlreadyAccepted, AlreadyInvited,
+                                    UserRegisteredEmail)
 from invitations.utils import get_invitation_model
+from rest_framework import serializers
 
 InvitationModel = get_invitation_model()
 

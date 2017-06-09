@@ -1,18 +1,17 @@
 from django.contrib import messages
+from invitations.adapters import get_invitations_adapter
+from invitations.app_settings import app_settings as invitations_settings
+from invitations.signals import invite_accepted
 from rest_framework import mixins, status, viewsets
-from rest_framework.decorators import api_view, detail_route, list_route, permission_classes
+from rest_framework.decorators import (api_view, detail_route, list_route,
+                                       permission_classes)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from invitations.app_settings import app_settings as invitations_settings
-from invitations.adapters import get_invitations_adapter
-from invitations.signals import invite_accepted
-
-from .app_settings import (
-    InvitationModel, InvitationBulkWriteSerializer, InvitationReadSerializer,
-    InvitationWriteSerializer, CREATE_AND_SEND_URL, SEND_URL, SEND_MULTIPLE_URL
-)
+from .app_settings import (CREATE_AND_SEND_URL, SEND_MULTIPLE_URL, SEND_URL,
+                           InvitationBulkWriteSerializer, InvitationModel,
+                           InvitationReadSerializer, InvitationWriteSerializer)
 
 
 class InvitationViewSet(
