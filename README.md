@@ -53,29 +53,29 @@ url(r'^', include('rest_invitations.urls'))
 
 ### APIs (examples with default values)
 
-*   Invitations list
+*   `Invitations list`
 
     /invitations/ (list, create)
 
     body request (create): email (string)
 
-*   Invitation detail
+*   `Invitation detail`
 
-    /invitations/(?P<pk>[^/.]+)/ (retrieve)
+    /invitations/<pk>/ (retrieve)
 
-*   Invitation send
+*   `Invitation send`
 
-    /invitations/(?P<pk>[^/.]+)/send/ (post)
+    /invitations/<pk>/send/ (post)
 
     body request: None
 
-*   Invitation create and send
+*   `Invitation create and send`
 
     invitations/create-and-send/ (post)
 
     body request: email (string)
 
-*   Invitation multiple send
+*   `Invitation multiple send`
 
     invitations/send-multiple/ (post)
 
