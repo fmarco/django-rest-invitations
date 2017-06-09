@@ -61,11 +61,11 @@ url(r'^', include('rest_invitations.urls'))
 
 *   `Invitation detail`
 
-    - /invitations/<pk>/ (retrieve)
+    - /invitations/`<pk>`/ (retrieve)
 
 *   `Invitation send`
 
-    - /invitations/<pk>/send/ (post)
+    - /invitations/`<pk>`/send/ (post)
 
     body request: None
 
