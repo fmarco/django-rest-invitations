@@ -10,7 +10,7 @@ router.register(r'{0}'.format(API_BASE_URL), InvitationViewSet)
 invitations_patterns = (
     [
         url(
-            r'^{0}/(?P<key>\w+)/?$'.format(ACCEPT_INVITE_URL),
+            r'^{0}/{1}/(?P<key>\w+)/?$'.format(API_BASE_URL, ACCEPT_INVITE_URL),
             accept_invitation,
             name='accept-invite'
         ),

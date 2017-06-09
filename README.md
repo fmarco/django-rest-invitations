@@ -50,6 +50,10 @@ url(r'^', include('rest_invitations.urls'))
 
     String. Set up url on send_multiple endpoint
 
+*   `INVITATION_ACCEPT_INVITE_URL` (default=`accept-invite`)
+
+    String. Set up url for accept_invitation endpoint
+
 
 ### APIs (examples with default values)
 
@@ -71,15 +75,19 @@ url(r'^', include('rest_invitations.urls'))
 
 *   `Invitation create and send`
 
-    - invitations/create-and-send/ (post)
+    - /invitations/create-and-send/ (post)
 
     body request: email (string)
 
 *   `Invitation multiple send`
 
-    - invitations/send-multiple/ (post)
+    - /invitations/send-multiple/ (post)
 
     body request: email: list of strings
+
+*   `Accept invitation`
+
+    - /invitations/accept-invite/`<key>`/ (get)
 
 
 ### TODOS
