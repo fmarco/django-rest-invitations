@@ -90,7 +90,8 @@ def accept_invitation(request, key):
         get_invitations_adapter().add_message(
             request,
             messages.ERROR,
-            'invitations/messages/invite_invalid.txt')
+            'invitations/messages/invite_invalid.txt'
+        )
         return Response(login_data, status=status.HTTP_200_OK)
 
     if invitation.accepted:
@@ -98,7 +99,10 @@ def accept_invitation(request, key):
             request,
             messages.ERROR,
             'invitations/messages/invite_already_accepted.txt',
-            {'email': invitation.email})
+            {
+                'email': invitation.email
+            }
+        )
         return Response(login_data, status=status.HTTP_200_OK)
 
     if invitation.key_expired():
@@ -106,7 +110,10 @@ def accept_invitation(request, key):
             request,
             messages.ERROR,
             'invitations/messages/invite_expired.txt',
-            {'email': invitation.email})
+            {
+                'email': invitation.email
+            }
+        )
         return Response(signup_data, status=status.HTTP_200_OK)
 
     if not invitations_settings.ACCEPT_INVITE_AFTER_SIGNUP:
@@ -122,7 +129,9 @@ def accept_invitation(request, key):
             }
         )
         signup_data.update(
-            {'account_verified_email': invitation.email}
+            {
+                'account_verified_email': invitation.email
+            }
         )
     return Response(
         signup_data,
