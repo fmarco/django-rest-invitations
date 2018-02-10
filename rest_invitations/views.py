@@ -21,10 +21,16 @@ class InvitationViewSet(
     mixins.CreateModelMixin,
     viewsets.GenericViewSet
 ):
+    """Invitation view set."""
+
     queryset = InvitationModel.objects.all()
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
+        """Get serializer class.
+
+        :return:
+        """
         if self.action in ['list', 'retrive']:
             return InvitationReadSerializer
         elif self.action == 'send_multiple':
@@ -32,12 +38,24 @@ class InvitationViewSet(
         return InvitationWriteSerializer
 
     def _prepare_and_send(self, invitation, request):
+        """Prepare and send.
+
+        :param invitation:
+        :param request:
+        :return:
+        """
         invitation.inviter = request.user
         invitation.save()
         invitation.send_invitation(request)
 
     @detail_route(methods=['post'], permission_classes=[IsAuthenticated], url_path=SEND_URL)
     def send(self, request, pk=None):
+        """Send.
+
+        :param request:
+        :param pk:
+        :return:
+        """
         invitation = self.get_object()
         self._prepare_and_send(invitation, request)
         content = {'detail': 'Invite sent'}
@@ -45,6 +63,11 @@ class InvitationViewSet(
 
     @list_route(methods=['post'], permission_classes=[IsAuthenticated], url_path=CREATE_AND_SEND_URL)
     def create_and_send(self, request):
+        """Create and send.
+
+        :param request:
+        :return:
+        """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         email = serializer.data['email']
@@ -55,6 +78,11 @@ class InvitationViewSet(
 
     @list_route(methods=['post'], permission_classes=[IsAuthenticated], url_path=SEND_MULTIPLE_URL)
     def send_multiple(self, request):
+        """Send multiple.
+
+        :param request:
+        :return:
+        """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         inviter = request.user
@@ -68,7 +96,17 @@ class InvitationViewSet(
 @api_view(('POST', 'GET'))
 @permission_classes((AllowAny,))
 def accept_invitation(request, key):
+    """Accept invitation.
+
+    :param request:
+    :param key:
+    :return:
+    """
     def get_object():
+        """Get object.
+
+        :return:
+        """
         try:
             return InvitationModel.objects.get(key=key.lower())
         except InvitationModel.DoesNotExist:
@@ -136,6 +174,13 @@ def accept_invitation(request, key):
                 'account_verified_email': invitation.email
             }
         )
+    else:
+        signup_data.update(
+            {
+                'account_invited_email': invitation.email
+            }
+        )
+
     return Response(
         signup_data,
         status=status.HTTP_200_OK

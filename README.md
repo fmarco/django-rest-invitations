@@ -10,7 +10,7 @@ Make a proper setup for django-invitations.
 
 ### Installation
 
-```
+```python
 # Add to settings.py, INSTALLED_APPS
 'rest_framework',
 'invitations',
