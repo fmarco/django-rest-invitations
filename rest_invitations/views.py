@@ -31,7 +31,7 @@ class InvitationViewSet(
 
         :return:
         """
-        if self.action in ['list', 'retrive']:
+        if self.action in ['list', 'retrieve']:
             return InvitationReadSerializer
         elif self.action == 'send_multiple':
             return InvitationBulkWriteSerializer
