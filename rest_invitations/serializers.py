@@ -16,21 +16,33 @@ errors = {
     "email_in_use": _("An active user is using this e-mail address"),
 }
 
+
 class EmailListField(serializers.ListField):
+    """Email list field."""
+
     child = serializers.EmailField()
 
 
 class InvitationWriteSerializer(serializers.ModelSerializer):
-    class Meta:
+    """Invitation write serializer."""
+
+    class Meta(object):
+        """Options."""
+
         model = InvitationModel
         fields = ('email',)
 
     def _validate_invitation(self, email):
-        if InvitationModel.objects.all_valid().filter(
-                email__iexact=email, accepted=False):
+        """Validate invitation.
+
+        :param email:
+        :return:
+        """
+        if InvitationModel.objects.all_valid().filter(email__iexact=email,
+                                                      accepted=False):
             raise AlreadyInvited
-        elif InvitationModel.objects.filter(
-                email__iexact=email, accepted=True):
+        elif InvitationModel.objects.filter(email__iexact=email,
+                                            accepted=True):
             raise AlreadyAccepted
         elif get_user_model().objects.filter(email__iexact=email):
             raise UserRegisteredEmail
@@ -38,47 +50,70 @@ class InvitationWriteSerializer(serializers.ModelSerializer):
             return True
 
     def validate_email(self, email):
+        """Validate email.
+
+        :param email:
+        :return:
+        """
         email = get_invitations_adapter().clean_email(email)
 
         try:
             self._validate_invitation(email)
-        except(AlreadyInvited):
+        except AlreadyInvited:
             raise serializers.ValidationError(errors["already_invited"])
-        except(AlreadyAccepted):
+        except AlreadyAccepted:
             raise serializers.ValidationError(errors["already_accepted"])
-        except(UserRegisteredEmail):
+        except UserRegisteredEmail:
             raise serializers.ValidationError(errors["email_in_use"])
         return email
 
     def create(self, validate_data):
+        """Create.
+
+        :param validate_data:
+        :return:
+        """
         return InvitationModel.create(**validate_data)
 
 
 class InvitationReadSerializer(serializers.ModelSerializer):
-    class Meta:
+    """Invitation read serializer."""
+
+    class Meta(object):
+        """Options."""
+
         model = InvitationModel
         fields = '__all__'
 
 
 class InvitationBulkWriteSerializer(InvitationWriteSerializer):
+    """Invitation bulk serializer."""
 
     email = EmailListField()
 
     class Meta(InvitationWriteSerializer.Meta):
+        """Options."""
+
         model = InvitationModel
         fields = InvitationWriteSerializer.Meta.fields
 
     def validate_email(self, email_list):
+        """Validate email.
+
+        :param email_list:
+        :return:
+        """
         if len(email_list) == 0:
             raise serializers.ValidationError(_('You must add one or more email addresses'))
         for email in email_list:
             email = get_invitations_adapter().clean_email(email)
             try:
                 self._validate_invitation(email)
-            except(AlreadyInvited):
+            except AlreadyInvited:
                 raise serializers.ValidationError(errors["already_invited"])
-            except(AlreadyAccepted):
+            except AlreadyAccepted:
                 raise serializers.ValidationError(errors["already_accepted"])
-            except(UserRegisteredEmail):
+            except UserRegisteredEmail:
                 raise serializers.ValidationError(errors["email_in_use"])
-            return email_list
+
+        return email_list

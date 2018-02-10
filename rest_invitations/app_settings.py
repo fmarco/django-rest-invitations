@@ -7,9 +7,15 @@ from .serializers import InvitationBulkWriteSerializer as DefaultInvitationBulkW
 from .utils import import_callable
 
 # Serializers
-InvitationReadSerializer = import_callable(getattr(settings, 'INVITATION_SERIALIZER_READ', DefaultInvitationReadSerializer))
-InvitationWriteSerializer = import_callable(getattr(settings, 'INVITATION_SERIALIZER_WRITE', DefaultInvitationWriteSerializer))
-InvitationBulkWriteSerializer = import_callable(getattr(settings, 'INVITATION_SERIALIZER_WRITE_BULK', DefaultInvitationBulkWriteSerializer))
+InvitationReadSerializer = import_callable(
+    getattr(settings, 'INVITATION_SERIALIZER_READ', DefaultInvitationReadSerializer)
+)
+InvitationWriteSerializer = import_callable(
+    getattr(settings, 'INVITATION_SERIALIZER_WRITE', DefaultInvitationWriteSerializer)
+)
+InvitationBulkWriteSerializer = import_callable(
+    getattr(settings, 'INVITATION_SERIALIZER_WRITE_BULK', DefaultInvitationBulkWriteSerializer)
+)
 
 # Urls
 API_BASE_URL = getattr(settings, 'INVITATION_API_BASE_URL', 'invitations')
