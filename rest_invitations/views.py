@@ -24,7 +24,7 @@ class InvitationViewSet(
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ['list', 'retrive']:
+        if self.action in ['list', 'retrieve']:
             return InvitationReadSerializer
         elif self.action == 'send_multiple':
             return InvitationBulkWriteSerializer
