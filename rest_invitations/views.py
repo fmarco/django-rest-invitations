@@ -7,7 +7,6 @@ from rest_framework.decorators import (api_view, detail_route, list_route,
                                        permission_classes)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
 
 from .app_settings import (CREATE_AND_SEND_URL, SEND_MULTIPLE_URL, SEND_URL,
                            InvitationBulkWriteSerializer, InvitationModel,
@@ -24,7 +23,7 @@ class InvitationViewSet(
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ['list', 'retrive']:
+        if self.action in ['list', 'retrieve']:
             return InvitationReadSerializer
         elif self.action == 'send_multiple':
             return InvitationBulkWriteSerializer
