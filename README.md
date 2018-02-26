@@ -1,7 +1,22 @@
 ## django-rest-invitations
 
+
+[![Build Status](https://travis-ci.org/fmarco/django-rest-invitations.svg?branch=master)](https://travis-ci.org/fmarco/django-rest-invitations)
+
+[![Coverage Status](https://coveralls.io/repos/fmarco/django-rest-invitations/badge.svg?branch=master&service=github)](https://coveralls.io/github/fmarco/django-rest-invitations?branch=master)
+
 Rest customizable extension for [django-invitations](https://github.com/bee-keeper/django-invitations)
 
+Supported Django versions:
+
+* 2.7
+* 3.4
+* 3.5
+* 3.6
+
+Supported Django versions:
+
+* Django 1.11
 
 ### Requirements
 
@@ -89,11 +104,6 @@ url(r'^', include('rest_invitations.urls'))
 
     - /invitations/accept-invite/`<key>`/ (get)
 
-
-### TODOS
-
-* Tests
-* ...
 
 
 ### Contributions
