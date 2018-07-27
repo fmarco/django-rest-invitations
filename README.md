@@ -80,7 +80,7 @@ url(r'^', include('rest_invitations.urls'))
 
 *   `Invitation detail`
 
-    - /invitations/`<pk>`/ (retrieve)
+    - /invitations/`<pk>`/ (retrieve, destroy)
 
 *   `Invitation send`
 
