@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-rest-invitations',
-    version='0.1.0',
+    version='0.1.1',
     author='Marco Federighi',
     author_email='federighi.marco@gmail.com',
     url='http://github.com/fmarco/django-rest-invitations',
