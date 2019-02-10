@@ -13,10 +13,12 @@ Supported Django versions:
 * 3.4
 * 3.5
 * 3.6
+* 3.7
 
 Supported Django versions:
 
 * Django 1.11
+* Django 2.0
 
 ### Requirements
 
