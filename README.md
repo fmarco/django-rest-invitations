@@ -7,7 +7,7 @@
 
 Rest customizable extension for [django-invitations](https://github.com/bee-keeper/django-invitations)
 
-Supported Django versions:
+Supported Python versions:
 
 * 2.7
 * 3.4
