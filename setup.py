@@ -12,8 +12,8 @@ setup(
     keywords=['django', 'invitation', 'django-allauth', 'invite', 'rest', 'django-rest-framework', 'drf', 'invitations'],
     zip_safe=False,
     install_requires=[
-        'djangorestframework>=3.7.7',
-        'django-invitations==1.9.2'
+        'djangorestframework>=3.10',
+        'django-invitations==1.9.3'
     ],
     include_package_data=True,
     classifiers=[

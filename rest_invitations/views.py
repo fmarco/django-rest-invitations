@@ -3,7 +3,7 @@ from invitations.adapters import get_invitations_adapter
 from invitations.app_settings import app_settings as invitations_settings
 from invitations.signals import invite_accepted
 from rest_framework import mixins, status, viewsets
-from rest_framework.decorators import (api_view, permission_classes, action)
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
