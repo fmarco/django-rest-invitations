@@ -20,6 +20,10 @@ Supported Django versions:
 * Django 1.11
 * Django 2.0
 
+Supported DRF versions:
+
+* at least DRF 3.10 or greater
+
 ### Requirements
 
 Make a proper setup for django-invitations.
