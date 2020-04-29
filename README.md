@@ -9,16 +9,16 @@ Rest customizable extension for [django-invitations](https://github.com/bee-keep
 
 Supported Python versions:
 
-* 2.7
-* 3.4
 * 3.5
 * 3.6
 * 3.7
+* 3.8
 
 Supported Django versions:
 
 * Django 1.11
 * Django 2.0
+* Django 3.0
 
 Supported DRF versions:
 

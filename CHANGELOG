@@ -7,3 +7,12 @@
 ----------------
 
 - Handle delete operation on InvitationViewSet
+
+
+0.1.2 (2020-04-29)
+----------------
+
+- DRF 3.10 support
+- Drop support for python 2.7 and python 3.4
+- Add support for python 3.8
+- Add support for django 3.0
