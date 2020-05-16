@@ -8,8 +8,6 @@ from .serializers import \
 from .serializers import \
     InvitationWriteSerializer as DefaultInvitationWriteSerializer
 from .utils import import_callable
-from .views import InvitationViewSet as DefaultInvitationViewSet
-from .views import accept_invitation as default_accept_invitation
 
 # Serializers
 InvitationReadSerializer = import_callable(
@@ -31,21 +29,6 @@ InvitationBulkWriteSerializer = import_callable(
         settings,
         'INVITATION_SERIALIZER_WRITE_BULK',
         DefaultInvitationBulkWriteSerializer
-        )
-)
-
-InvitationViewSet = import_callable(
-    getattr(
-        settings,
-        'INVITATION_VIEW',
-        DefaultInvitationViewSet
-        )
-)
-accept_invitation = import_callable(
-    getattr(
-        settings,
-        'INVITATION_ACCEPT_INVATION',
-        default_accept_invitation
         )
 )
 
