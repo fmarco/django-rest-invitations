@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 from rest_framework import routers
 
 from .app_settings import ACCEPT_INVITE_URL, API_BASE_URL
-from .app_settings import (InvitationViewSet, accept_invitation)
+from .views import (InvitationViewSet, accept_invitation)
 InvitationViewSet = import_callable(
     getattr(
         settings,
