@@ -10,14 +10,14 @@ InvitationViewSet = import_callable(
     getattr(
         settings,
         'INVITATION_VIEW',
-        DefaultInvitationViewSet
+        InvitationViewSet
         )
 )
 accept_invitation = import_callable(
     getattr(
         settings,
         'INVITATION_ACCEPT_INVATION',
-        default_accept_invitation
+        accept_invitation
         )
 )
 
