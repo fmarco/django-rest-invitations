@@ -4,6 +4,7 @@ from rest_framework import routers
 from .app_settings import ACCEPT_INVITE_URL, API_BASE_URL
 from .views import (InvitationViewSet, accept_invitation)
 from .utils import import_callable
+from django.conf import settings
 
 InvitationViewSet = import_callable(
     getattr(
