@@ -3,6 +3,20 @@ from rest_framework import routers
 
 from .app_settings import ACCEPT_INVITE_URL, API_BASE_URL
 from .app_settings import (InvitationViewSet, accept_invitation)
+InvitationViewSet = import_callable(
+    getattr(
+        settings,
+        'INVITATION_VIEW',
+        DefaultInvitationViewSet
+        )
+)
+accept_invitation = import_callable(
+    getattr(
+        settings,
+        'INVITATION_ACCEPT_INVATION',
+        default_accept_invitation
+        )
+)
 
 router = routers.SimpleRouter()
 router.register(r'{0}'.format(API_BASE_URL), InvitationViewSet)
