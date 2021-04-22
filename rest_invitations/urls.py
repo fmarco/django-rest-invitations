@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import path
 from rest_framework import routers
 
 from .app_settings import ACCEPT_INVITE_URL, API_BASE_URL
@@ -9,7 +10,7 @@ router.register(r'{0}'.format(API_BASE_URL), InvitationViewSet)
 
 invitations_patterns = (
     [
-        url(
+        path(
             r'^{0}/{1}/(?P<key>\w+)/?$'.format(
                 API_BASE_URL, ACCEPT_INVITE_URL
             ),
@@ -21,5 +22,5 @@ invitations_patterns = (
 )
 
 urlpatterns = router.urls + [
-    url(r'^', include(invitations_patterns)),
+    path(r'^', include(invitations_patterns)),
 ]
