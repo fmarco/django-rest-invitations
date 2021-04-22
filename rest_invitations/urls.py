@@ -11,7 +11,7 @@ router.register(r'{0}'.format(API_BASE_URL), InvitationViewSet)
 invitations_patterns = (
     [
         path(
-            r'^{0}/{1}/(?P<key>\w+)/?$'.format(
+            '{0}/{1}/<key>)/'.format(
                 API_BASE_URL, ACCEPT_INVITE_URL
             ),
             accept_invitation,
@@ -22,5 +22,5 @@ invitations_patterns = (
 )
 
 urlpatterns = router.urls + [
-    path(r'^', include(invitations_patterns)),
+    path('', include(invitations_patterns)),
 ]
