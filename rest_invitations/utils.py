@@ -6,5 +6,4 @@ def import_callable(path):
         return path
     else:
         module, attr_name = path.rsplit('.', 1)
-        print(module, attr_name)
         return getattr(import_module(module), attr_name)
